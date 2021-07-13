@@ -1,7 +1,5 @@
 package com.sayan.javabrains.ipldashboard.controller;
 
-import com.sayan.common.model.Team;
-import com.sayan.common.repo.ITeamRepository;
 import com.sayan.javabrains.ipldashboard.dto.TeamDTO;
 import com.sayan.javabrains.ipldashboard.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
