@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  #install:
+   # runtime-versions:
+    #  java: corretto11
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - REPOSITORY_URI=603884112155.dkr.ecr.us-east-1.amazonaws.com/spring-boot-java-brains-ipl-dashboard
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Build started on `date`
+      - mvn clean package -DskipTests=true
+  post_build:
+    commands:
+      - echo Build completed successfully
+      - mv target/ipldashboard-*.jar target/ipldashboard.jar
+artifacts:
+  files:
+    - Dockerfile
+    - target/ipldashboard*.jar/*
+  discard-paths: yes
