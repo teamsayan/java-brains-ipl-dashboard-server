@@ -27,10 +27,7 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Pushed the ECR...
       - echo Writing image definitions file...
-      - printf '[{"name":"nodeapp","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"spring-boot-java-brains-ipl-dashboard","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - cat imagedefinitions.json
 artifacts:
-  files:
-   - ipldashboard/Dockerfile
-   - ipldashboard/target/ipldashboard*.jar/*
-  discard-paths: yes
+  files: imagedefinitions.json
