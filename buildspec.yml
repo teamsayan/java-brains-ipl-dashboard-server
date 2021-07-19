@@ -20,9 +20,9 @@ phases:
   post_build:
     commands:
       - echo Build completed successfully
-      - mv target/ipldashboard-*.jar target/ipldashboard.jar
+      - mv ipldashboard/target/ipldashboard-*.jar ipldashboard/target/ipldashboard.jar
 artifacts:
   files:
-    - Dockerfile
-    - target/ipldashboard*.jar/*
+    - ipldashboard/Dockerfile
+    - ipldashboard/target/ipldashboard*.jar/*
   discard-paths: yes
