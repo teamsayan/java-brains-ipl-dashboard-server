@@ -25,12 +25,12 @@ phases:
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - echo Pushed the ECR... 
+      - echo Pushed the ECR...
       - echo Writing image definitions file...
       - printf '[{"name":"nodeapp","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - cat imagedefinitions.json
-#artifacts:
-  #files:
-   # - ipldashboard/Dockerfile
-    #- ipldashboard/target/ipldashboard*.jar/*
-  #discard-paths: yes
+artifacts:
+  files:
+   - ipldashboard/Dockerfile
+   - ipldashboard/target/ipldashboard*.jar/*
+  discard-paths: yes
